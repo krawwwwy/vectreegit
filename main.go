@@ -1,25 +1,51 @@
 package main
 
-import (
-	"fmt"
-)
+import "fmt"
 
-//TIP To run your code, right-click the code and select <b>Run</b>. Alternatively, click
-// the <icon src="AllIcons.Actions.Execute"/> icon in the gutter and select the <b>Run</b> menu item from here.
-
+func zero(xPtr *int) {
+	*xPtr = 0
+}
 func main() {
-	//TIP Press <shortcut actionId="ShowIntentionActions"/> when your caret is at the underlined or highlighted text
-	// to see how GoLand suggests fixing it.
-	s := "gopher"
-	fmt.Println("Hello and welcome, %s!", s)
+	x := 5
+	zero(&x)
+	fmt.Println(x) // x is 0
+}
 
-	for i := 1; i <= 5; i++ {
-		//TIP You can try debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-		// for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>. To start your debugging session,
-		// right-click your code in the editor and select the <b>Debug</b> option.
-		fmt.Println("i =", 100/i)
+func sum(sl []int) int {
+	ans := 0
+	for _, v := range sl {
+		ans += v
+	}
+	panic("asd")
+	return ans
+
+}
+
+func half(x int) (int, bool) {
+	return x / 2, x%2 == 0
+}
+
+func maxing(args ...int) int {
+	ans := args[0]
+	for _, v := range args {
+		if v > ans {
+			ans = v
+		}
+	}
+	return ans
+}
+
+func makeOddGenerator() func() int {
+	i := 1
+	return func() int {
+		i += 2
+		return i
 	}
 }
 
-//TIP See GoLand help at <a href="https://www.jetbrains.com/help/go/">jetbrains.com/help/go/</a>.
-// Also, you can try interactive lessons for GoLand by selecting 'Help | Learn IDE Features' from the main menu.
+func fib(n int) int {
+	if n < 2 {
+		return n
+	}
+	return fib(n-1) + fib(n-2)
+}
